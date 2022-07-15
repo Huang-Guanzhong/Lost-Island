@@ -1,18 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class TransitionManager : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
+public class TransitionManager : Singleton<TransitionManager>
+{ 
+    public void Transition (string from,string to)
     {
-        
+        StartCoroutine(TransitionToScene(from,to));
     }
 
-    // Update is called once per frame
-    void Update()
+    private IEnumerator TransitionToScene(string from, string to)
     {
-        
+        yield return SceneManager.UnloadSceneAsync(from);
+        yield return SceneManager.LoadSceneAsync(to,LoadSceneMode.Additive);
+
+        //Set new Scene as the Active Scene
+        Scene newScene = SceneManager.GetSceneAt(SceneManager.sceneCount - 1);
+        SceneManager.SetActiveScene(newScene);
     }
 }
+
