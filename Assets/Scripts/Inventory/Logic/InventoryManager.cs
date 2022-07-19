@@ -13,7 +13,8 @@ public class InventoryManager : Singleton<InventoryManager>
         if (!itemList.Contains(itemName))
         {
             itemList.Add(itemName);
-            //TODO: UI correlated Display
+            //UI correlated display
+            EventHandler.CallUpdateUIEvent(itemData.GetItemDetails(itemName), itemList.Count - 1);
         }
     }
 }
