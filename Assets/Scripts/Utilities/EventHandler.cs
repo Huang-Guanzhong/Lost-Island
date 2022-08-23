@@ -17,11 +17,11 @@ public static class EventHandler
         BeforeSceneUnloadEvent?.Invoke();
     }
 
-    public static event Action AfterSceneUnloadEvent;
+    public static event Action AfterSceneloadEvent;
 
     public static void CallAfterSceneUnloadEvent()
     {
-        AfterSceneUnloadEvent?.Invoke();
+        AfterSceneloadEvent?.Invoke();
     }
 
     public static event Action<ItemDetails, bool> ItemSelectedEvent;

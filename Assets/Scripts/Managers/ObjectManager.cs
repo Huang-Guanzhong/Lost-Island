@@ -9,14 +9,14 @@ public class ObjectManager : MonoBehaviour
     private void OnEnable()
     {
         EventHandler.BeforeSceneUnloadEvent += OnBeforeSceneUnloadEvent;
-        EventHandler.AfterSceneUnloadEvent += OnAfterSceneUnloadEvent;
+        EventHandler.AfterSceneloadEvent += OnAfterSceneloadEvent;
         EventHandler.UpdateUIEvent += OnUpdateUIEvent;
     }
 
     private void OnDisable()
     {
         EventHandler.BeforeSceneUnloadEvent -= OnBeforeSceneUnloadEvent;
-        EventHandler.AfterSceneUnloadEvent -= OnAfterSceneUnloadEvent;
+        EventHandler.AfterSceneloadEvent -= OnAfterSceneloadEvent;
         EventHandler.UpdateUIEvent += OnUpdateUIEvent;
     }
 
@@ -31,7 +31,7 @@ public class ObjectManager : MonoBehaviour
     }
 
 
-    private void OnAfterSceneUnloadEvent()
+    private void OnAfterSceneloadEvent()
     {
         foreach (var item in FindObjectsOfType<Item>())
         {
