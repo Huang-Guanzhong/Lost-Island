@@ -31,7 +31,13 @@ public class ObjectManager : MonoBehaviour
                 itemAvailableDict.Add(item.itemName, true);
         }
 
-
+        foreach (var item in FindObjectsOfType<Interactive>())
+        {
+            if (interactiveStateDict.ContainsKey(item.name))
+                interactiveStateDict[item.name] = item.isDone;
+            else
+                interactiveStateDict.Add(item.name, item.isDone);
+        }
     }
 
 
@@ -44,6 +50,14 @@ public class ObjectManager : MonoBehaviour
             else
                 item.gameObject.SetActive(itemAvailableDict[item.itemName]);
         }
+        foreach (var item in FindObjectsOfType<Interactive>())
+        {
+            if (interactiveStateDict.ContainsKey(item.name))
+                item.isDone = interactiveStateDict[item.name];
+            else
+                interactiveStateDict.Add(item.name, item.isDone);
+        }
+
     }
     private void OnUpdateUIEvent(ItemDetails itemDetails, int arg2)
     {
