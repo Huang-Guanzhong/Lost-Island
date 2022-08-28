@@ -5,6 +5,8 @@ using UnityEngine;
 public class ObjectManager : MonoBehaviour
 {
     private Dictionary<ItemName, bool> itemAvailableDict = new Dictionary<ItemName, bool>();
+    private Dictionary<string, bool> interactiveStateDict = new Dictionary<string, bool>();
+
 
     private void OnEnable()
     {
@@ -28,6 +30,8 @@ public class ObjectManager : MonoBehaviour
             if (!itemAvailableDict.ContainsKey(item.itemName))
                 itemAvailableDict.Add(item.itemName, true);
         }
+
+
     }
 
 

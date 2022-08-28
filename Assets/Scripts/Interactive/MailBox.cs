@@ -42,5 +42,6 @@ public class MailBox : Interactive
     protected override void OnClickedAction()
     {
         spriteRender.sprite = openSprite;
+        transform.GetChild(0).gameObject.SetActive(true);
     }
 }
