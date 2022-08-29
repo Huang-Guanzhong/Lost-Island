@@ -35,6 +35,14 @@ public class InventoryUI : MonoBehaviour
         {
             currentIndex = index;
             slotUI.SetItem(itemDetails);
+
+            if (index > 0)
+                leftButton.interactable = true;
+            if (index == -1)
+            {
+                leftButton.interactable = false;
+                rightButton.interactable = false;
+            }
         }
     }
 
