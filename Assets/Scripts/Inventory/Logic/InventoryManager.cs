@@ -10,11 +10,22 @@ public class InventoryManager : Singleton<InventoryManager>
     private void OnEnable()
     {
         EventHandler.ItemUsedEvent += OnItemUsedEvent;
+        EventHandler.ChangeItemEvent += OnChangeItemEvent;
     }
 
     private void OnDisable()
     {
         EventHandler.ItemUsedEvent -= OnItemUsedEvent;
+        EventHandler.ChangeItemEvent -= OnChangeItemEvent;
+    }
+
+    private void OnChangeItemEvent(int index)
+    {
+        if (index >= 0 && index < itemList.Count)
+        {
+            ItemDetails item = itemData.GetItemDetails(itemList[index]);
+            EventHandler.CallUpdateUIEvent(item, index);
+        }
     }
 
     private void OnItemUsedEvent(ItemName itemName)

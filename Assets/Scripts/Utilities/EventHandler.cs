@@ -36,5 +36,12 @@ public static class EventHandler
     {
         ItemUsedEvent?.Invoke(itemName);
     }
+
+    public static event Action<int> ChangeItemEvent;
+
+    public static void CallChangeItemEvent(int index)
+    {
+        ChangeItemEvent?.Invoke(index);
+    }
 }
 
