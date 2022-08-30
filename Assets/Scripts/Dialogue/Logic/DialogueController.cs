@@ -35,11 +35,30 @@ public class DialogueController : MonoBehaviour
 
     public void ShowDialogueEmpty()
     {
-        
+        if (!isTalking)
+            StartCoroutine(DialogueRoutine(dialogueEmptyStack));
     }
 
     public void ShowDialogueFinish()
     {
+        if (!isTalking)
+            StartCoroutine(DialogueRoutine(dialogueFinishStack));
+    }
 
+    private IEnumerator DialogueRoutine(Stack<string> data)
+    {
+        isTalking = true;
+        if (data.TryPop(out string result))
+        {
+            EventHandler.CallShowDialogueEvent(result);
+            yield return null;
+            isTalking = false;
+        }
+        else
+        {
+            EventHandler.CallShowDialogueEvent(string.Empty);
+            FillDialogueStack();
+            isTalking = false;
+        }
     }
 }
